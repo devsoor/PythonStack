@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Authors</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="row align-items-end">
+            <a href="/">Go to Books</a>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <h1>Add an Author</h1>
+                <form action="add_author" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="author_fname">First Name</label>
+                        <input type="text" class="text" id="author_fname" name="author_fname">
+                    </div>
+                    <div class="form-group">
+                        <label for="author_lname">Last Name</label>
+                        <input type="text" class="text" id="author_lname" name="author_lname">
+                    </div>
+                    <div class="form-group">
+                        <label for="author_notes">Notes</label>
+                        <textarea name="author_notes" id="author_notes" cols="30" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Add</button>
+                </form>
+            </div>
+            <div class="col-xs-6">
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Action</th>
+                    </tr>
+                    
+                    {% for author in all_authors %}
+                        <tr>
+                            <td>{{ author.id }}</td>
+                            <td>{{ author.first_name }} {{ author.last_name }}</td>
+                            <td><a href="authors/{{author.id}}">View</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

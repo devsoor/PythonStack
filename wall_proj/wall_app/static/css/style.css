@@ -1,0 +1,36 @@
+* {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 10px;
+    padding: 10px;
+}
+
+
+table {
+    width:100%;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th, td {
+padding: 15px;
+text-align: left;
+}
+
+textarea {
+    overflow-y: scroll;
+}
+
+.logged {
+    color: green;
+}
+
+.notlogged {
+    color: red;
+}
+
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}

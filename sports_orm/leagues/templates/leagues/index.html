@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sports Leagues</title>
+	</head>
+	<body>
+		<!-- ========================PART 1====================== -->
+		<h3>All Baseball leagues</h3>
+		<ol>
+			{% for l in all_baseball_leagues %}
+				<li>{{l.name}}</li>
+			{% endfor %}
+		</ol>
+		<h3>All Women's leagues</h3>
+		<ol>
+			{% for l in all_womens_leagues %}
+				<li>{{l.name}}</li>
+			{% endfor %}
+		</ol>
+		<h3>all leagues where sport is any type of hockey</h3>
+		<ol>
+			{% for l in hockey_sport %}
+				<li>{{l.name}}</li>
+			{% endfor %}
+		</ol>
+		<h3>all leagues where sport is something OTHER THAN football</h3>
+		<ol>
+			{% for l in other_than_football %}
+				<li>{{l.name}}</li>
+			{% endfor %}
+		</ol>
+		<h3>all leagues that call themselves "conferences"</h3>
+		<ol>
+			{% for l in call_conferences %}
+				<li>{{l.name}}</li>
+			{% endfor %}
+		</ol>
+		<h3>all leagues in the Atlantic region</h3>
+		<ol>
+			{% for l in atlantic_region %}
+				<li>{{l.name}}</li>
+			{% endfor %}
+		</ol>
+		<h3>all teams based in Dallas</h3>
+		<ol>
+			{% for l in teams_dallas %}
+				<li>{{l.team_name}}</li>
+			{% endfor %}
+		</ol>
+		<h3>all teams named the Raptors</h3>
+		<ol>
+			{% for l in teams_raptors %}
+				<li>{{l.team_name}} {{l.location}}</li>
+			{% endfor %}
+		</ol>
+
+		<h3>all teams whose location includes "City"</h3>
+		<ol>
+			{% for l in includes_city %}
+				<li>{{l.team_name}},  {{l.location}}</li>
+			{% endfor %}
+		</ol>
+		<h3>all teams whose names begin with "T"</h3>
+		<ol>
+			{% for l in begin_with_t %}
+				<li>{{l.team_name}},  {{l.location}}</li>
+			{% endfor %}
+		</ol>
+
+		<h3>all teams, ordered alphabetically by location</h3>
+		<ol>
+			{% for l in alpha_location %}
+				<li> {{l.location}}, {{l.team_name}}</li>
+			{% endfor %}
+		</ol>
+
+		<h3>all teams, ordered by team name in reverse alphabetical order</h3>
+		<ol>
+			{% for l in alpha_location_reverse %}
+				<li> {{l.location}}, {{l.team_name}}</li>
+			{% endfor %}
+		</ol>
+
+		<h3>every player with last name "Cooper"</h3>
+		<ol>
+			{% for l in lastname_cooper %}
+				<li>{{l.first_name}} {{l.last_name}}</li>
+			{% endfor %}
+		</ol>
+
+		<h3>every player with first name "Joshua"</h3>
+		<ol>
+			{% for l in firstname_joshua %}
+				<li>{{l.first_name}} {{l.last_name}}</li>
+			{% endfor %}
+		</ol>
+
+		<h3>every player with last name "Cooper" EXCEPT those with "Joshua" as the first name</h3>
+		<ol>
+			{% for l in cooper_except_joshua %}
+				<li>{{l.first_name}} {{l.last_name}}</li>
+			{% endfor %}
+		</ol>
+
+		<h3>all players with first name "Alexander" OR first name "Wyatt"</h3>
+		<ol>
+			{% for l in alexander_or_wyatt %}
+				<li>{{l.first_name}} {{l.last_name}}</li>
+			{% endfor %}
+		</ol>
+
+		<!-- ========================PART 2====================== -->
+		<h3>all teams in the Atlantic Soccer Conference</h3>
+		<ol>
+			{% for l in teams_in_atlantic_soccer_conference %}
+				<li>{{l.team_name}}</li>
+			{% endfor %}
+		</ol>
+
+		<h3>all (current) players on the Boston Penguins</h3>
+		<ol>
+			{% for l in current_players_boston_penguins %}
+				<li>{{l.first_name}} {{l.last_name}}</li>
+			{% endfor %}
+		</ol>
+
+		<h3>all (current) players in the International Collegiate Baseball Conference</h3>
+		<ol>
+			{% for l in current_players_ICBC %}
+				<li>{{l.first_name}} {{l.last_name}}</li>
+			{% endfor %}
+		</ol>
+
+		<h3>all (current) players in the American Conference of Amateur Football with last name "Lopez"</h3>
+		<ol>
+			{% for l in current_players_ACAF_lopez %}
+				<li>{{l.first_name}} {{l.last_name}}</li>
+			{% endfor %}
+		</ol>
+
+		<h3>all football players</h3>
+		<ol>
+			{% for l in all_football_players %}
+				<li>{{l.first_name}} {{l.last_name}}</li>
+			{% endfor %}
+		</ol>
+
+		<h3>all teams with a (current) player named "Sophia"</h3>
+		<ol>
+			{% for l in teams_current_player_Sophia %}
+				<li>{{l.first_name}} {{l.last_name}}</li>
+			{% endfor %}
+		</ol>
+
+		
+		<!-- ================================================================================= -->
+
+		<hr>
+		<h1>Leagues</h1>
+		<ol>
+			{% for league in leagues %}
+				<li>{{league.name}}</li>
+			{% empty %}
+				<p>No leagues found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			{% endfor %}
+		</ol>
+		<h1>Teams</h1>
+		<ol>
+			{% for team in teams %}
+				<li>{{team.location}} {{team.team_name}}</li>
+			{% empty %}
+				<p>No teams found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			{% endfor %}
+		</ol>
+		<h1>Players</h1>
+		<ol>
+			{% for player in players %}
+				<li>{{player.first_name}} {{player.last_name}}</li>
+			{% empty %}
+				<p>No teams found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			{% endfor %}
+		</ol>
+	</body>
+</html>
